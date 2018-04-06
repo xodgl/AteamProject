@@ -3,6 +3,44 @@
 
 <mapper namespace = "groupWare.mybatis">
 
+	<select id="getArticleCount" resultType="int" parameterType="hashmap">
+		select nvl(count(*),0) from tpuser
+	</select>
+	
+	<select id="getArticles" resultType="Member" parameterType="hashmap">
+	<!-- 1번		select * from
+			( select rownum rnum ,a.* 
+			  from (select dnum,emnum,name,position,tel,
+			  email from tpuser order by dnum,emnum) 
+			  a ) where rnum between #{startRow} and #{endRow}  -->
+			  
+			  
+ 			<!-- 2번  select * from
+ 			  			( select rownum rnum ,a.* 
+ 			  			  from (select tpuser.dnum,dname,emnum,name,position,tel,
+ 			  			  email from tpuser,tpdep where tpuser.dnum = tpdep.dnum order by dnum,emnum) 
+ 			  			  a ) where rnum between #{startRow} and #{endRow}  -->
+ 			
+ 		<!-- 3번	  			  
+ 			  			   			select * from
+ 			  			           ( select rownum rnum ,a.* 
+ 			  			          from (select tpdep.dnum,tpdep.dname,tpteam.tnum,tpteam.tname,tpuser.emnum,tpuser.name,tpuser.position,tpuser.tel,
+ 			  			  			  tpuser.email from tpuser,tpteam,tpdep where tpuser.tnum = tpteam.tnum and tpteam.dnum =tpdep.dnum order by dnum,tnum,emnum) a)
+ 			  			                where rnum between #{startRow} and #{endRow}
+ 			  			           -->    
+ 			  			           
+		select * from
+         ( select rownum rnum ,a.* 
+        from (select tpdep.dnum,tpdep.dname,tpteam.tnum,tpteam.tname,tpuser.emnum,tpuser.name,decode(tpuser.position,1,'대표',2,'관리자',
+        3,'부장',4,'대리',5,'사원') position,tpuser.tel,
+			  tpuser.email from tpuser,tpteam,tpdep where tpuser.tnum = tpteam.tnum and tpteam.dnum =tpdep.dnum order by dnum,tnum,tpuser.position) a)
+              where rnum between #{startRow} and #{endRow}
+		  
+	</select>
+	
+	<select id="getNextNumber" resultType="int">
+		select TPUSER.nextval from dual
+	</select>
 	
 	
 </mapper>

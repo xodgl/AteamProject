@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,8 +16,8 @@
 function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Meta tag Keywords -->
 <!-- css files -->
-<link rel="stylesheet" href="resources/css/index.css" type="text/css" media="all" /> <!-- Style-CSS --> 
-<link rel="stylesheet" href="resources/css/index-font.css"> <!-- Font-Awesome-Icons-CSS -->
+<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/index.css" type="text/css" media="all" /> <!-- Style-CSS --> 
+<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/index-font.css"> <!-- Font-Awesome-Icons-CSS -->
 <!-- //css files -->
 <!-- online-fonts -->
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
@@ -34,13 +38,13 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			<div class="wthree-pro">
 				<h2>Login Quick</h2>
 			</div>
-			<form action="main" method="post">
+			<form action="loginDb" method="post">
 				<div class="pom-agile">
-					<input placeholder="Id" name="Name" class="user" type="text" required="">
+					<input placeholder="Id" name="id" class="user" type="text" required="" value="${MemberDataBean.id}">
 					<span class="icon1"><i class="fa fa-user" aria-hidden="true"></i></span>
 				</div>
 				<div class="pom-agile">
-					<input  placeholder="Password" name="Password" class="pass" type="password" required="">
+					<input  placeholder="Password" name="pw" class="pass" type="password" required="" value="${MemberDataBean.pw}">
 					<span class="icon2"><i class="fa fa-unlock" aria-hidden="true"></i></span>
 				</div>
 				<div class="sub-w3l">

@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%response.sendRedirect("member/index"); %>
+관리자 페이지
 </body>
 </html>
