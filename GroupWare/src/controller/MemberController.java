@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import dao.BoardDBMybatis;
 
 @Controller
-//ÀåÈ¿¼öÁ¤
+//ìž¥íš¨ìˆ˜ì •
 //@RequestMapping("/")
 public class MemberController{
 
-//===============> ÀåÈ¿Ãß°¡ start
+// ìž¥íš¨ì¶”ê°€ start
 	String boardid = "1";
 	String pageNum ="1";
 	BoardDBMybatis dbPro = BoardDBMybatis.getInstance();
@@ -23,7 +23,7 @@ public class MemberController{
 	public void addAttributes (String boardid, String pageNum) {
 		if (pageNum != null && pageNum != "") this.pageNum = pageNum;
 	}
-//===============> ÀåÈ¿Ãß°¡ end
+// ìž¥íš¨ì¶”ê°€ end
 
 	@RequestMapping("/index")
 	public String index(Model model) {
@@ -35,7 +35,7 @@ public class MemberController{
 	@RequestMapping("/main")
 	public String list1(Model model) throws Exception {
 		
-		//Ãß°¡
+		//ì¶”ê°€
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
 		//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -75,7 +75,7 @@ public class MemberController{
 		model.addAttribute("bottomLine", bottomLine);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("number", number);
-	//¼öÁ¤
+	//ìˆ˜ì •
 		
 		return "board/mainBoard";
 	}
